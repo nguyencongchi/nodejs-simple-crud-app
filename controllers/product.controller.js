@@ -9,6 +9,17 @@ const getProducts = async (req, res) => {
     }
 }
 
+const getProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const product = await Product.findById({ id });
+        res.status(200).json({ Success: true, message: "Get Product By Id", Product: product })
+    } catch (er) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
 const createProduct = async (req, res) => {
     try {
         const product = await Product.create(req.body);
@@ -19,6 +30,7 @@ const createProduct = async (req, res) => {
 };
 
 module.exports = {
+    getProduct,
     getProducts,
     createProduct,
 }

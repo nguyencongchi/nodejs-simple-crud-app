@@ -3,15 +3,11 @@ const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
-// models
 const Product = require('./models/product.model.js');
-
-// routes
 const productRoutes = require('./routes/product.route.js');
 
-// middle ware
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: false }));
 app.use("/api/products", productRoutes);
 
 mongoose
